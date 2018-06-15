@@ -37,6 +37,11 @@
 	-fx-alignment: CENTER;
 }
 
+.tableview-item-column-notes {
+    -fx-pref-width: 80px;
+    -fx-alignment: CENTER;
+}
+
 .tableview-customer-column-contacts .label {
 	-fx-alignment: CENTER;
 	-fx-pref-width: 10000px;		/* Contacts column fills TableView width, header */
@@ -53,6 +58,12 @@
   -fx-padding: 0 0 0 0;
   -fx-pref-width: 50px;
 }
+
+.tableview-item-column-notes-button{
+    -fx-background-color: #ADD8E6;
+    -fx-background-insets: 0;
+}
+
 .tableview-customer-column-notes-button:hover {
 	-fx-background-color: #ffd8bc;	/* color name: corn silk, #fff8dc-#002020 */
 }

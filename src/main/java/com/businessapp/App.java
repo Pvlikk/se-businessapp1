@@ -7,6 +7,11 @@ import com.businessapp.fxgui.AppGUIBuilder;
 import com.businessapp.logic.CalculatorLogicIntf;
 import com.businessapp.logic.CustomerDataIntf;
 
+import com.businessapp.logic.ItemDataIntf;
+import com.businessapp.persistence.CustomerDataSource;
+import com.businessapp.persistence.KatalogDataSource;
+import com.businessapp.persistence.PersistenceProviderFactory;
+import com.businessapp.persistence.PersistenceProviderIntf;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -25,6 +30,8 @@ public class App extends Application {
 	public static final String DATA_PATH	= "data/";
 	public static final String FXML_PATH	= "fxgui/";
 	private static App _app = null;
+	PersistenceProviderIntf persistenceProvider = PersistenceProviderFactory.getPersistenceProvider("JavaSerialization");
+
 
 	/*
 	 * List of App components in order of appearance on the main GUI/TabPanel.
@@ -35,9 +42,11 @@ public class App extends Application {
 			new Component(	"Main",			"App.fxml",				null ),
 			new Component(	"Calculator",	"Calculator.fxml",		CalculatorLogicIntf.getController() ),
 			//new Component( "Calc_2",		"Calculator.fxml",		CalculatorLogicIntf.getController() ),
-			new Component(	"Kunden",		"Customer.fxml",		CustomerDataIntf.getController() ),
-			new Component(	"Kundenliste_2","Customer.fxml",		CustomerDataIntf.getController() ),
-			//new Component( "Katalog",		"Catalog.fxml",			CatalogDataIntf.getController() ),
+			//new Component(	"Kunden",		"Customer.fxml",		CustomerDataIntf.getController() ),
+				new Component( "Kunden", "Customer.fxml", CustomerDataSource.getController( "Kunden", persistenceProvider ) ),
+			new Component(	"Kundenliste_2","Customer.fxml",		CustomerDataSource.getController( "Kundenliste_2", persistenceProvider ) ),
+				new Component(	"Studenten","Customer.fxml",		CustomerDataIntf.getController() ),
+			new Component( "Katalog",		"Katalog.fxml",			KatalogDataSource.getController( "Katalog", persistenceProvider ) ),
 	}));
 
 	public static App getInstance() {
